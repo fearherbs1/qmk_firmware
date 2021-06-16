@@ -63,27 +63,34 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
                  TG(1),   KC_PSLS, KC_PAST, SYS_MIC_M,
-                 KC_7,    KC_8,    KC_9,    KC_PMNS,
-                 KC_4,    KC_5,    KC_6,    KC_PPLS,
-        TD(TD_MEDIA), KC_1,    KC_2,    KC_3,    KC_ENT,
-        LT(2,KC_BSPC),    KC_00,    KC_0,    KC_DOT,  KC_ENT),
+		         KC_7,    KC_8,    KC_9,    KC_PMNS,
+		         KC_4,    KC_5,    KC_6,    KC_PPLS,
+		TD(TD_MEDIA), KC_1,    KC_2,    KC_3,    KC_ENT,
+		LT(3,KC_BSPC),    KC_00,    KC_0,    KC_DOT,  KC_ENT),
 
     [1] = LAYOUT(
                  TG(1),   KC_TRNS, KC_TRNS, KC_TRNS,
 		         KC_HOME, KC_UP,   KC_PGUP, KC_TRNS,
 		         KC_LEFT, KC_TRNS, KC_RGHT, KC_TRNS,
 		KC_TRNS, KC_END,  KC_DOWN, KC_PGDN, KC_TRNS,
-		KC_TRNS,   KC_TRNS, KC_INS,  KC_DEL,  KC_TRNS),
+		TG(2),   KC_TRNS, KC_INS,  KC_DEL,  KC_TRNS),
 
     [2] = LAYOUT(
-                 KC_TRNS, RGB_TOG, RGB_MOD, TG(3),
+                 KC_TRNS, RGB_TOG, RGB_MOD, KC_TRNS,
 		         RGB_HUI, RGB_SAI, RGB_VAI, KC_TRNS,
 		         RGB_HUD, RGB_SAD, RGB_VAD, KC_TRNS,
+		RESET,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		TG(2),   KC_TRNS,   KC_TRNS, KC_TRNS, KC_TRNS),
+
+    [3] = LAYOUT(
+                 KC_TRNS, KC_TRNS, KC_TRNS, TG(4),
+		         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+		         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
 		RESET,   COPY_ALL, SEL_CPY, KC_TRNS, LOCK_PC,
 		KC_TRNS, FILE_RENAME_S, FILE_RENAME_M, KC_CALC, LOCK_PC),
 
-    [3] = LAYOUT(
-                 KC_ESC, KC_TILD, XXXXXXX, TG(3),
+    [4] = LAYOUT(
+                 KC_ESC, KC_TILD, XXXXXXX, TG(4),
 		         KC_F8, KC_F10, KC_F12, KC_DOWN,
 		         XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,
 		RESET,   XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT,
@@ -211,9 +218,12 @@ void oled_task_user(void) {
             oled_write_P(PSTR("Func\n"), false);
             break;
         case 2:
-            oled_write_P(PSTR("Macro/RGB\n"), false);
+            oled_write_P(PSTR("RGB\n"), false);
             break;
         case 3:
+            oled_write_P(PSTR("Macro\n"), false);
+            break;
+        case 4:
             oled_write_P(PSTR("osu!\n"), false);
             break;
     }
